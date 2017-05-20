@@ -1,0 +1,24 @@
+{
+  "name": "touchper",
+  "version": "1.0.0",
+  "description": "a touch or mouse swiper",
+  "main": "touchMouse.js",
+  "scripts": {
+    "test": "echo \"Error: no test specified\" && exit 1"
+  },
+  "repository": {
+    "type": "git",
+    "url": "git+https://github.com/myLB/touchSwiper.git"
+  },
+  "keywords": [
+    "swiper",
+    "touch",
+    "mouse"
+  ],
+  "author": "LB",
+  "license": "ISC",
+  "bugs": {
+    "url": "https://github.com/myLB/touchSwiper/issues"
+  },
+  "homepage": "https://github.com/myLB/touchSwiper#readme"
+}

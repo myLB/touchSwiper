@@ -1,0 +1,51 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <title>Title</title>
+    <meta name="viewport" content="width=device-width,user-scalable=no,initial-scale=1.0">
+    <link rel="stylesheet" href="common.css" type="text/css" />
+    <style>
+        body{
+            margin: 0;
+            padding: 0;
+            font-size: 0;
+        }
+        ul,li{
+            list-style: none;
+            margin:0;
+            padding: 0;
+            height: 100%;
+            font-size: 0;
+            overflow: hidden;
+        }
+        div{
+            width:200px;
+            height: 200px;
+            background-color: chartreuse;
+            margin:0 auto;
+        }
+        li{
+            display: inline-block;
+            width:200px;
+            font-size: 20px;
+            height: 100%;
+        }
+    </style>
+</head>
+<body>
+    <div class="lb-swiper">
+        <ul class="lb-ul">
+            <li class="lb-li" style="background-color: crimson">0</li>
+            <li class="lb-li" style="background-color: yellow">1</li>
+            <li class="lb-li" style="background-color: darkslategray">2</li>
+        </ul>
+    </div>
+<script src="../touchMouse.js"></script>
+<script>
+    new swiper({
+        el:'.lb-swiper'
+    });
+</script>
+</body>
+</html>
