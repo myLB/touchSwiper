@@ -156,21 +156,21 @@ class swiper {
                 s.inform.uiIndex = 1;
                 s.inform.pagina.children[0].style.backgroundColor = 'blue';
                 /*s.inform.pagina.children[s.inform.uiChildrenLength - 3].style.backgroundColor = '#ccc';*/
-                s.inform.pagina.children.map((obj, index) => {
+                Array.from(s.inform.pagina.children).map((obj, index) => {
                     if (index === 0) return;
                     obj.style.backgroundColor = '#ccc';
                 })
                 s.init(s.inform.bodDivWidth);//超出则初始化动画
             } else if (s.inform.uiIndex > 1 && s.inform.uiIndex <= s.inform.uiChildrenLength - 2) {
                 s.inform.pagina.children[s.inform.uiIndex - 1].style.backgroundColor = 'blue';
-                s.inform.pagina.children.map((obj, index) => {
+                Array.from(s.inform.pagina.children).map((obj, index) => {
                     if (index == s.inform.uiIndex - 1) return;
                     obj.style.backgroundColor = '#ccc';
                 })
             }
             s.inform.setId = setTimeout(function () {
                 ++s.inform.uiIndex;//向左位移setStyle
-                var width = -s.inform.bodDivWidth * s.inform.uiIndex;
+                let width = -s.inform.bodDivWidth * s.inform.uiIndex;
                 s.setStyle(s.inform.ul, width, s.options.speed);//开始动画
             }, s.options.spaceTime)
             //形成一个闭环 uiChildrenLength-1 0 1 2 .... 0
@@ -254,7 +254,6 @@ class swiper {
             }
             //执行完成移除监听事件
         }
-
         function touUp(x) {
             if (Math.abs(x) > 5) {//只有位移了才会计算下面的
                 var date = s.client.endDate - s.client.startDate;//相差时间
@@ -374,8 +373,8 @@ class swiper {
                     }
                 }
             }
+            s.emit(s.inform.Transformend, s.inform.ul, s.func['transed'])//监听过渡结束事件
         }
-
         function touMove(x) {
             var str = s.getStyle(s.inform.ul, s.inform.Transform);//获取li的translate属性的值
             s.client.left = str.slice(7, str.length - 1).split(',')[4] - 0;//鼠标点下是ul当时的位移
