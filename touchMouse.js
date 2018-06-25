@@ -197,12 +197,14 @@ class swiper {
             /*return false;*/
         }//鼠标点下事件
         s.func['mousemove'] = function (event) {
-            s.off(s.inform.Transformend, s.inform.ul, s.func['transed']);//结束动画结束监听事件
             clearTimeout(s.inform.setId);
-            var x = event.pageX - s.client.MX;
             event.preventDefault();
             event.stopPropagation();
-            touMove(x);
+            var x = event.pageX - s.client.MX;
+            if(Math.abs(x) > 5) {
+                s.off(s.inform.Transformend, s.inform.ul, s.func['transed']);//结束动画结束监听事件
+                touMove(x);
+            }
         }//鼠标移动事件
         //1.首先获取他当时的位移
         //2.鼠标点下，快速向做左或右移动，并且到鼠标抬起的时候，用的时间不超过300ms的时候原轮播动画停止做新的动画
@@ -231,14 +233,16 @@ class swiper {
             }
         }//手指点下时
         s.func['touchmove'] = function (event) {
-            s.off(s.inform.Transformend, s.inform.ul, s.func['transed']);//结束动画结束监听事件
             clearTimeout(s.inform.setId);
             var touches = event.targetTouches[0];
             if (touches.identifier == 0) {
                 event.preventDefault();
                 event.stopPropagation();
                 var x = touches.pageX - s.client.MX;
-                touMove(x);
+                if(Math.abs(x) > 5) {
+                    s.off(s.inform.Transformend, s.inform.ul, s.func['transed']);//结束动画结束监听事件
+                    touMove(x);
+                }
             }
         }
         s.func['touchend'] = function (event) {
@@ -372,8 +376,8 @@ class swiper {
                         }
                     }
                 }
+                s.emit(s.inform.Transformend, s.inform.ul, s.func['transed'])//监听过渡结束事件
             }
-            s.emit(s.inform.Transformend, s.inform.ul, s.func['transed'])//监听过渡结束事件
         }
         function touMove(x) {
             var str = s.getStyle(s.inform.ul, s.inform.Transform);//获取li的translate属性的值
