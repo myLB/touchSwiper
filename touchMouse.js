@@ -113,7 +113,7 @@ class swiper {
                 if(s.options.pageClick) {
                     paginaLi.onclick = function () {
                         clearTimeout(s.inform.setId);
-                        s.off(s.inform.Transformend, s.inform.ul, s.func['transed']);//结束动画结束监听事件
+                        /*s.off(s.inform.Transformend, s.inform.ul, s.func['transed']);//结束动画结束监听事件*/
                         s.inform.uiIndex = i;
                         let width = -s.inform.bodDivWidth * s.inform.uiIndex;
                         s.setStyle(s.inform.ul, width, s.options.speed);//开始动画
@@ -122,7 +122,7 @@ class swiper {
                             if (index == i - 1) return;
                             obj.style.backgroundColor = '#ccc';
                         })
-                        s.emit(s.inform.Transformend, s.inform.ul, s.func['transed'])//监听过渡结束事件
+                        /*s.emit(s.inform.Transformend, s.inform.ul, s.func['transed'])//监听过渡结束事件*/
                     }
                 }
                 paginaLi.style.cssText = `width:10px;height:10px;background-color:#ccc;border-radius:10px;margin:0 3px;`;
@@ -448,6 +448,8 @@ class swiper {
     }//移动端还是pc端
     left(event) {
         var s = this;
+        clearTimeout(s.inform.setId);
+        /*s.off(s.inform.Transformend, s.inform.ul, s.func['transed']);//结束动画结束监听事件*/
         event.preventDefault();
         event.stopPropagation();
         ++s.inform.uiIndex;
@@ -474,6 +476,7 @@ class swiper {
     }//左点击
     right(event) {
         var s = this;
+        clearTimeout(s.inform.setId);
         event.preventDefault();
         event.stopPropagation();
         --s.inform.uiIndex;
