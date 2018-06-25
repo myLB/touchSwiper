@@ -11,11 +11,12 @@ git clone https://github.com/myLB/touchSwiper
 
 <pre>
         //默认值
-        el:'.lb-swiper',//特定节点
-        speed:2000,//多少毫秒完成动画
-        spaceTime:1000,//动画间隔时间
-        welt:100,//小于多少贴边，大于则开启动画到下一个li
-        pagination:true,//是否需要分页器
-        pre:false,//向左移动
-        next:false//向右移动
+        el: '.lb-swiper',//特定节点
+        speed: 2000,//多少毫秒完成动画
+        spaceTime: 1000,//动画间隔时间
+        welt: 100,//小于多少贴边，大于则开启动画到下一个li
+        pagination: true,//是否需要分页器
+        pageClick: false,//分页器是否可以点击
+        pre: false,//向左移动
+        next: false//向右移动
 </pre>

@@ -22,6 +22,7 @@ class swiper {
                 spaceTime: 1000,//动画间隔时间
                 welt: 100,//小于多少贴边，大于则开启动画到下一个li
                 pagination: true,//是否需要分页器
+                pageClick: false,//分页器是否可以点击
                 pre: false,//向左移动
                 next: false//向右移动
             }
@@ -109,6 +110,21 @@ class swiper {
             var pagina = document.createElement('ul');
             for (let i = 1; i < ul.children.length - 1; i++) {
                 let paginaLi = document.createElement('li');
+                if(s.options.pageClick) {
+                    paginaLi.onclick = function () {
+                        clearTimeout(s.inform.setId);
+                        s.off(s.inform.Transformend, s.inform.ul, s.func['transed']);//结束动画结束监听事件
+                        s.inform.uiIndex = i;
+                        let width = -s.inform.bodDivWidth * s.inform.uiIndex;
+                        s.setStyle(s.inform.ul, width, s.options.speed);//开始动画
+                        s.inform.pagina.children[i - 1].style.backgroundColor = 'blue';
+                        Array.from(s.inform.pagina.children).map((obj, index) => {
+                            if (index == i - 1) return;
+                            obj.style.backgroundColor = '#ccc';
+                        })
+                        s.emit(s.inform.Transformend, s.inform.ul, s.func['transed'])//监听过渡结束事件
+                    }
+                }
                 paginaLi.style.cssText = `width:10px;height:10px;background-color:#ccc;border-radius:10px;margin:0 3px;`;
                 pagina.appendChild(paginaLi);
             }
